@@ -8,20 +8,25 @@
     <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+    <!--EJS creating todo's-->
     <h1>Todos</h1>
     <ul>
     <% todos.forEach( el => { %>
+        <!--if the element matches the microsoftID  then add li-->
         <% if(el.microsoftId === user.microsoftId){  %>
             <li class='todoItem' data-id='<%=el._id%>'>
-                <span class='<%= el.completed === true ? 'completed' : 'not'%>'><%= el.todo %></span>
+                <!-- if the element has class completed, then add class completed, else add it to todo? -->
+                <span class='<%= el.completed === true 
+                <!--? 'completed' : 'not'%>'><%= el.todo %></span>
+                    <!-- delete button-->
                 <span class='del'> Delete </span>
             </li>
         <% }  %>
     <% }) %>    
     </ul>
-
+    <!-- Display of the username -->
     <h2><%= user.displayName %> has <%= left %> things left to do.</h2>
-
+    <!-- form -->
     <form action="/todos/createTodo" method='POST'>
         <input type="text" placeholder="Enter Todo Item" name='todoItem'>
         <input type="submit">
